@@ -1,0 +1,76 @@
+{% extends 'crm/base.html' %}
+   {% block content %}
+
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>GameCollection</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    </head>
+    <body>
+    <style>
+        body {
+            background-color: beige;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Welcome!</div>
+                    <div class="panel-body">
+                        Welcome to the World of Games!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2 style="padding-left: 15Px">Collector Information</h2>
+    </div>
+    <div>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr class="bg-info">
+                <th>Collector Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Account</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip Code</th>
+
+                <th colspan="3">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for collector in collectors %}
+                <tr>
+                    <td>{{ collector.coll_name }}</td>
+                    <td>{{ collector.email }}</td>
+                    <td>{{ collector.phone_number }}</td>
+                    <td>{{ collector.account_number }}</td>
+                    <td>{{ collector.address }}</td>
+                    <td>{{ collector.city }}</td>
+                    <td>{{ collector.state }}</td>
+                    <td>{{ collector.zipcode }}</td>
+                    <td><a href="{% url 'crm:collector_edit' pk=collector.pk %}" class="btn btn-warning">Edit</a>
+
+                    <td><a href="{% url 'crm:collector_delete' pk=collector.pk %}"
+                           onclick="return confirm('Are you sure you want to delete?')"
+                           class="btn btn-danger">Delete</a>
+                    </td>
+                    <td><a href="{% url 'crm:summary' pk=collector.pk %}"
+                           class="btn btn-primary">Summary</a>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    </body>
+    </html>
+{% endblock %}

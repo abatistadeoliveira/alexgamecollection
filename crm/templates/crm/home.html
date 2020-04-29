@@ -1,0 +1,65 @@
+{% extends 'crm/base.html' %}
+{% load staticfiles %}
+{% block content %}
+   
+   <body>
+    <html>
+            {% if user.is_authenticated %}
+                <div class="page-container">
+
+                    <h2 class="top-menu">Hello {{ user.username }},</h2>
+                    <p>Please choose from below options.</p>
+
+                </div>
+            {% endif %}
+            <div class="content container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="links">
+                            <!-- Example row of columns -->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="thumbnail">
+                                        <img src="{% static "images/customer.jpg" %}" alt="collector"/>
+                                        <div class="caption">
+                                            <h2>Collectors</h2>
+                                            <p>Here is the information of the Collectors. </p>
+                                            <p><a class="btn btn-primary" href="{% url 'crm:collector_list' %}"
+                                                  role="button">View
+                                                details &raquo;</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="thumbnail">
+                                        <img src="{% static "images/cupcakes.jpeg" %}" alt="consoles"/>
+                                        <div class="caption">
+                                            <h2>Consoles</h2>
+                                            <p>Here is the information of the Consoles.</p>
+                                            <p><a class="btn btn-primary" href="{% url 'crm:console_list' %}"
+                                                  role="button">View
+                                                details &raquo;</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="thumbnail">
+                                        <img src="{% static "images/lunch.jpeg" %}" alt="lunch"/>
+                                        <div class="caption">
+                                            <h2>Video Games</h2>
+                                            <p>Here is the information of the Video Games.</p>
+                                            <p><a class="btn btn-primary" href="{% url 'crm:videogame_list' %}"
+                                                  role="button">View
+                                                details &raquo;</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+    </html>
+{% endblock %}

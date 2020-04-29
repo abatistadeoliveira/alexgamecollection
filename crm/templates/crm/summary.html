@@ -1,0 +1,128 @@
+{% extends 'crm/base.html' %}
+{% block content %}
+{% load mathfilters %}
+{% load humanize %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Welcome!</div>
+                <div class="panel-body">
+                    Welcome to the World of Games!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <h1 style="padding-left: 15Px">Collector Summary</h1>
+</div>
+    <div class="row">
+        <h2 style="padding-left: 15Px">Collector Total</h2>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr class="bg-info">
+                <th>Total Price of Collection</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${{ sum_console_charge.console_price__sum|add:sum_videogame_charge.videogame_charge__sum|intcomma|floatformat:2 }}</td>
+
+            </tr>
+        </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <h2 style="padding-left: 15Px">VideoGame Information</h2>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr class="bg-info">
+                <th>VideoGame Title</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Console</th>
+                <th>Total Charge</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for videogame in videogames %}
+                <tr>
+                    <td>{{ videogame.videogame_name }}</td>
+                    <td>{{ videogame.v_description }}</td>
+                    <td>{{ videogame.quantity|intcomma }}</td>
+                    <td>{{ videogame.videogame_console }}</td>
+                    <td>${{ videogame.videogame_charge|intcomma }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr class="bg-info">
+                <th>Total of VideoGame Prices</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${{ sum_videogame_charge.videogame_charge__sum|intcomma|floatformat:2  }}</td>
+
+            </tr>
+        </tbody>
+    </table>
+<div class="row">
+        <h2 style="padding-left: 15Px">Console Information</h2>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr class="bg-info">
+                <th>Collector</th>
+                <th>Console Name</th>
+                <th>Description</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Brand</th>
+                <th>Console Price</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for console in consoles %}
+                <tr>
+                    <td>{{ console.coll_name }}</td>
+                    <td>{{ console.console_name }}</td>
+                    <td>{{ console.description }}</td>
+                    <td>{{ console.console_model }}</td>
+                    <td>{{ console.console_color }}</td>
+                    <td>{{ console.console_brand }}</td>
+                    <td>${{ console.console_price|intcomma }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr class="bg-info">
+                <th>Total of Console Prices</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${{ sum_console_charge.console_price__sum|intcomma|floatformat:2 }}</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
