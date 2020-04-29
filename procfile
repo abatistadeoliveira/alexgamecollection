@@ -1,1 +1,1 @@
-web: gunicorn gamecollection.wsgi --log-file -
+web: gunicorn gamecollection.wsgi --log-file
