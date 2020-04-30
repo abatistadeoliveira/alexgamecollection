@@ -129,7 +129,7 @@ def videogame_edit(request, pk):
             videogame.updated_date = timezone.now()
             videogame.save()
             videogames = VideoGame.objects.filter(created_date__lte=timezone.now())
-            return render(request, 'crm/videogame_list.html', {'consoles': consoles})
+            return render(request, 'crm/videogame_list.html', {'videogames': videogames})
     else:
         # print("else")
         form = VideoGameForm(instance=console)
